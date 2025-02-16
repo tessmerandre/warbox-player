@@ -8,7 +8,14 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlinx.serialization)
     alias(libs.plugins.buildConfig)
+    id("org.jlleitschuh.gradle.ktlint")
 }
+
+//    debug.set(true)
+//    android.set(true) // Required for Android modules
+//    outputToConsole.set(true)
+//    ignoreFailures.set(false)
+//}
 
 kotlin {
     jvmToolchain(11)
@@ -92,9 +99,16 @@ android {
 dependencies {
     androidTestImplementation(libs.androidx.uitest.junit4)
     debugImplementation(libs.androidx.uitest.testManifest)
+
+    ktlintRuleset(libs.ktlintRuleset)
 }
 
 buildConfig {
     // BuildConfig configuration here.
     // https://github.com/gmazzo/gradle-buildconfig-plugin#usage-in-kts
+}
+
+ktlint {
+    verbose.set(true)
+    outputToConsole.set(true)
 }
