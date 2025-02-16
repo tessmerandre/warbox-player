@@ -38,13 +38,13 @@ jobs:
         run: chmod +x gradlew
 
       - name: Build APK
-        run: ./gradlew assembleRelease
+        run: ./gradlew assembleDebug
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
           name: android-apk
-          path: composeApp/build/outputs/apk/release/*.apk
+          path: composeApp/build/outputs/apk/debug/*.apk
 
 #  Explore-GitHub-Actions:
 #    runs-on: ubuntu-latest
