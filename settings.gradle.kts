@@ -28,7 +28,5 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
-includeBuild("convention-plugins")
-include(":shared")
-include(":sample:composeApp")
+include(":composeApp")
 

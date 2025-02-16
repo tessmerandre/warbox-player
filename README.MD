@@ -1,36 +1,22 @@
-# WarBox Player
+# Compose Multiplatform Application
 
-Kotlin Multiplatform Library
+## Before running!
+ - check your system with [KDoctor](https://github.com/Kotlin/kdoctor)
+ - install JDK 17 or higher on your machine
+ - add `local.properties` file to the project root and set a path to Android SDK there
 
-### Run Sample App
+### Android
+To run the application on android device/emulator:  
+ - open project in Android Studio and run imported android run configuration
 
- - Android: `open project in Android Studio and run the sample app`
- - iOS: `open 'sample/iosApp/iosApp.xcodeproj' in Xcode and run the sample app`
+To build the application bundle:
+ - run `./gradlew :composeApp:assembleDebug`
+ - find `.apk` file in `composeApp/build/outputs/apk/debug/composeApp-debug.apk`
+Run android UI tests on the connected device: `./gradlew :composeApp:connectedDebugAndroidTest`
 
-### Publish to MavenLocal
+### iOS
+To run the application on iPhone device/simulator:
+ - Open `iosApp/iosApp.xcproject` in Xcode and run standard configuration
+ - Or use [Kotlin Multiplatform Mobile plugin](https://plugins.jetbrains.com/plugin/14936-kotlin-multiplatform-mobile) for Android Studio
+Run iOS simulator UI tests: `./gradlew :composeApp:iosSimulatorArm64Test`
 
-1) Run `./gradlew :shared:publishToMavenLocal`
-2) Open `~/.m2/repository/tv/warbox/app/"}`
-
-### Publish to MavenCentral
-
-1) Create a account and a namespace on Sonatype:
-   https://central.sonatype.org/register/central-portal/#create-an-account
-2) Add developer id, name, email and the project url to
-   `/convention-plugins/src/main/kotlin/convention.publication.gradle.kts`
-3) Generate a GPG key:
-   https://getstream.io/blog/publishing-libraries-to-mavencentral-2021/#generating-a-gpg-key-pair
-   ```
-   gpg --full-gen-key
-   gpg --keyserver keyserver.ubuntu.com --send-keys XXXXXXXX
-   gpg --export-secret-key XXXXXXXX > XXXXXXXX.gpg
-   ```
-4) Add the secrets to `local.properties`:
-   ```
-   signing.keyId=XXXXXXXX
-   signing.password=[key password]
-   signing.secretKeyRingFile=../XXXXXXXX.gpg
-   ossrhUsername=[Sonatype token_user]
-   ossrhPassword=[Sonatype token_password]
-   ```
-5) Run `./gradlew :shared:publishAllPublicationsToSonatypeRepository`
